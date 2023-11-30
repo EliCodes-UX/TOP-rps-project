@@ -1,9 +1,12 @@
 const computerChoice = document.querySelector('.computer-choice-display');
-const userChoices = document.querySelectorAll('.user-choice');
+const playerSelection = document.querySelectorAll('.user-choice');
 const userDisplay = document.querySelector('.user-choice-display');
-console.log(userChoices);
+const userScoreDisplay = document.querySelector('.user-score');
+const computerScoreDisplay = document.querySelector('.computer-score');
 
-// create computer input with math random
+let userScore = 0;
+let computerScore = 0;
+
 function getComputerSelection() {
   let pick = ['rock', 'paper', 'scissors'];
   let random = pick[Math.floor(Math.random() * pick.length)];
@@ -12,17 +15,45 @@ function getComputerSelection() {
   return random;
 }
 
-// create player input with using the buttons
-
-userChoices.forEach(userChoice => {
+playerSelection.forEach(userChoice => {
   userChoice.addEventListener('click', function (e) {
     choice = e.target.id;
     userDisplay.innerHTML = choice;
     console.log(choice);
-    getComputerSelection();
+    let computerSelection = getComputerSelection();
+    playRound(choice, computerSelection);
   });
 });
 
-// create function to play a round using buttons reaction
-// use round result to decide where the next letter goes
+function playRound(playerSelection, computerSelection) {
+  let roundWinner;
+
+  if (playerSelection === computerSelection) {
+    roundWinner = 'tie';
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper') ||
+    (playerSelection === 'paper' && computerSelection === 'rock')
+  ) {
+    roundWinner = 'player';
+  } else {
+    roundWinner = 'computer';
+  }
+
+  // Update scores based on the round winner
+  if (roundWinner === 'player') {
+    userScore++;
+  } else if (roundWinner === 'computer') {
+    computerScore++;
+  }
+
+  // Update score display
+  userScoreDisplay.innerHTML = userScore;
+  computerScoreDisplay.innerHTML = computerScore;
+
+  console.log(roundWinner);
+}
+
+console.log(playerSelection.id);
+
 // end game after the 5th letter gets added to loser
