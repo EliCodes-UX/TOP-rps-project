@@ -7,6 +7,7 @@ let gamePlay = document.querySelector('.winner');
 
 let userScore = 0;
 let computerScore = 0;
+let maxScore = 5;
 
 function getComputerSelection() {
   let pick = ['rock', 'paper', 'scissors'];
@@ -23,7 +24,7 @@ playerSelection.forEach(userChoice => {
     console.log(choice);
     let computerSelection = getComputerSelection();
     playRound(choice, computerSelection);
-    handleClick();
+    isGameOver();
   });
 });
 
@@ -32,14 +33,17 @@ function playRound(playerSelection, computerSelection) {
 
   if (playerSelection === computerSelection) {
     roundWinner = 'tie';
+    gamePlay.innerHTML = 'choose again';
   } else if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'scissors' && computerSelection === 'paper') ||
     (playerSelection === 'paper' && computerSelection === 'rock')
   ) {
     roundWinner = 'player';
+    gamePlay.innerHTML = 'you win';
   } else {
     roundWinner = 'computer';
+    gamePlay.innerHTML = 'you lost';
   }
 
   // Update scores based on the round winner
@@ -54,14 +58,19 @@ function playRound(playerSelection, computerSelection) {
   computerScoreDisplay.innerHTML = computerScore;
 
   console.log(roundWinner);
+
+  if (
+    parseInt(userScore.innerHTML) === maxScore ||
+    parseInt(computerScore.innerHTML) === maxScore
+  ) {
+    isGameOver();
+  }
 }
 
 console.log(playerSelection.id);
 
 // end game after the 5th point gets added to winner
 
-const handleClick = () => {
-  if (userScore === 5 || computerScore === 5) {
-    return 'game over';
-  }
+const isGameOver = () => {
+  alert('game over');
 };
