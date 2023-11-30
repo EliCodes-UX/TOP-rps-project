@@ -3,6 +3,7 @@ const playerSelection = document.querySelectorAll('.user-choice');
 const userDisplay = document.querySelector('.user-choice-display');
 const userScoreDisplay = document.querySelector('.user-score');
 const computerScoreDisplay = document.querySelector('.computer-score');
+let gamePlay = document.querySelector('.winner');
 
 let userScore = 0;
 let computerScore = 0;
@@ -22,6 +23,7 @@ playerSelection.forEach(userChoice => {
     console.log(choice);
     let computerSelection = getComputerSelection();
     playRound(choice, computerSelection);
+    handleClick();
   });
 });
 
@@ -56,4 +58,10 @@ function playRound(playerSelection, computerSelection) {
 
 console.log(playerSelection.id);
 
-// end game after the 5th letter gets added to loser
+// end game after the 5th point gets added to winner
+
+const handleClick = () => {
+  if (userScore === 5 || computerScore === 5) {
+    return 'game over';
+  }
+};
