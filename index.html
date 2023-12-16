@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="https://fontlibrary.org//face/press-start-2p"
+      type="text/css"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
@@ -8,15 +14,25 @@
     <title>rock paper scissors</title>
   </head>
   <body>
-    <h1>Rock Paper Scissors</h1>
-    <div class="user-choice-display"></div>
-    <div class="computer-choice-display"></div>
-    <div class="winner"></div>
-    <div class="scores">
-      <div class="user-score"></div>
-      <div class="computer-score"></div>
-    </div>
+    <h1 class="header">Rock Paper Scissors</h1>
+
     <div class="game-container">
+      <div class="displays">
+        <div class="player-display">
+          <h3>Player Chooses:</h3>
+          <h4 class="user-choice-display"></h4>
+        </div>
+        <div class="computer-display">
+          <h3>Computer Chooses:</h3>
+          <h4 class="computer-choice-display"></h4>
+        </div>
+        <div class="winner"></div>
+        <div class="scores">
+          <h3>scores:</h3>
+          <div class="user-score">0</div>
+          <div class="computer-score">0</div>
+        </div>
+      </div>
       <div class="choices">
         <button id="rock" class="user-choice">ROCK</button>
         <button id="paper" class="user-choice">PAPER</button>

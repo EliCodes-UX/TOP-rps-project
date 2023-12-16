@@ -58,19 +58,23 @@ function playRound(playerSelection, computerSelection) {
   computerScoreDisplay.innerHTML = computerScore;
 
   console.log(roundWinner);
-
-  if (
-    parseInt(userScore.innerHTML) === maxScore ||
-    parseInt(computerScore.innerHTML) === maxScore
-  ) {
-    isGameOver();
-  }
 }
 
 console.log(playerSelection.id);
 
-// end game after the 5th point gets added to winner
-
 const isGameOver = () => {
-  alert('game over');
+  if (userScore === maxScore || computerScore === maxScore) {
+    alert('Game Over');
+    resetGame();
+  }
+};
+
+const resetGame = () => {
+  computerScore = 0;
+  userScore = 0;
+  userScoreDisplay.innerHTML = userScore;
+  computerScoreDisplay.innerHTML = computerScore;
+  gamePlay.innerHTML = '';
+  computerChoice.innerHTML = '';
+  userDisplay.innerHTML = '';
 };
